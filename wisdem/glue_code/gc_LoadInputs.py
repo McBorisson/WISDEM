@@ -31,7 +31,7 @@ class WindTurbineOntologyPython(object):
                 else:
                     self.modeling_options["WISDEM"][m] = self.modeling_options[m]
 
-        for k in ["blade", "hub", "drivetrain", "tower", "monopile", "jacket", "floating_platform", "mooring", "RNA"]:
+        for k in ["blade", "hub", "drivetrain", "yaw", "tower", "monopile", "jacket", "floating_platform", "mooring", "RNA"]:
             flags[k] = k in self.wt_init["components"]
 
         for k in ["assembly", "components", "airfoils", "materials", "control"]:
@@ -58,6 +58,7 @@ class WindTurbineOntologyPython(object):
                          ("mooring","FloatingSE"),
                          ("hub","DriveSE"),
                          ("drivetrain","DriveSE"),
+                         ("yaw","DriveSE"),
                          ("generator","DriveSE")]
         for i,j in flag_pairings:
             if flags[i]:
