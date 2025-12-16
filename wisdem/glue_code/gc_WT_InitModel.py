@@ -779,6 +779,8 @@ def assign_drivetrain_values(wt_opt, modeling_options, drivetrain, yaw, flags, u
     if user_elastic and "elastic_properties" in yaw:
         if yaw["elastic_properties"]["mass"] > 0.0:
             wt_opt["drivese.yaw_mass"] = wt_opt["drivetrain.yaw_system_mass_user"] = yaw["elastic_properties"]["mass"]
+    elif yaw["yaw_system_mass_user"] > 0.0:
+        wt_opt["drivese.yaw_mass"] = wt_opt["drivetrain.yaw_system_mass_user"] = yaw["yaw_system_mass_user"]
            
     return wt_opt
 

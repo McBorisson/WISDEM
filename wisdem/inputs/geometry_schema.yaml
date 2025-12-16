@@ -558,6 +558,15 @@ properties:
                                 minimum: 0.0
                                 maximum: 100.0
                                 description: Permanent magnet cost
+            yaw:
+                type: object
+                properties:
+                    yaw_system_mass_user:
+                        type: number
+                        default: 0.0
+                        units: kg
+                        description: Override regular regression-based calculation of yaw mass with this value
+                        minimum: 0.0
             floating_platform:
                 type: object
                 properties:
