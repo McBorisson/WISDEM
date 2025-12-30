@@ -31,7 +31,7 @@ class WindTurbineOntologyPython(object):
                 else:
                     self.modeling_options["WISDEM"][m] = self.modeling_options[m]
 
-        for k in ["blade", "hub", "drivetrain", "tower", "monopile", "jacket", "floating_platform", "mooring", "RNA"]:
+        for k in ["blade", "hub", "drivetrain", "yaw", "tower", "monopile", "jacket", "floating_platform", "mooring", "RNA"]:
             flags[k] = k in self.wt_init["components"]
 
         for k in ["assembly", "components", "airfoils", "materials", "control"]:
@@ -58,6 +58,7 @@ class WindTurbineOntologyPython(object):
                          ("mooring","FloatingSE"),
                          ("hub","DriveSE"),
                          ("drivetrain","DriveSE"),
+                         ("yaw","DriveSE"),
                          ("generator","DriveSE")]
         for i,j in flag_pairings:
             if flags[i]:
@@ -870,6 +871,7 @@ class WindTurbineOntologyPython(object):
             
             if "yaw" not in self.wt_init["components"]:
                 self.wt_init["components"]["yaw"] = {}
+            if "elastic_properties" not in self.wt_init["components"]["yaw"]:
                 self.wt_init["components"]["yaw"]["elastic_properties"] = {}
             self.wt_init["components"]["yaw"]["elastic_properties"]["mass"] = float(wt_opt["drivese.yaw_mass"][0])
             self.wt_init["components"]["yaw"]["elastic_properties"]["inertia"] = np.zeros(3).tolist()
@@ -1125,7 +1127,7 @@ class WindTurbineOntologyPython(object):
         if self.modeling_options["flags"]["jacket"]:
             self.wt_init["components"]["jacket"]["r_head"] = float(wt_opt["jacket.r_head"][0])
             self.wt_init["components"]["jacket"]["r_foot"] = float(
-                wt_opt["jacket.r_head"] * wt_opt["jacket.foot_head_ratio"][0]
+                wt_opt["jacket.r_head"][0] * wt_opt["jacket.foot_head_ratio"][0]
             )
             self.wt_init["components"]["jacket"]["height"] = float(wt_opt["jacket.height"][0])
             self.wt_init["components"]["jacket"]["leg_diameter"] = float(wt_opt["jacket.leg_diameter"][0])
