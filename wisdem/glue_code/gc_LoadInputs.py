@@ -1127,7 +1127,7 @@ class WindTurbineOntologyPython(object):
         if self.modeling_options["flags"]["jacket"]:
             self.wt_init["components"]["jacket"]["r_head"] = float(wt_opt["jacket.r_head"][0])
             self.wt_init["components"]["jacket"]["r_foot"] = float(
-                wt_opt["jacket.r_head"] * wt_opt["jacket.foot_head_ratio"][0]
+                wt_opt["jacket.r_head"][0] * wt_opt["jacket.foot_head_ratio"][0]
             )
             self.wt_init["components"]["jacket"]["height"] = float(wt_opt["jacket.height"][0])
             self.wt_init["components"]["jacket"]["leg_diameter"] = float(wt_opt["jacket.leg_diameter"][0])
